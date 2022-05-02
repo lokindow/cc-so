@@ -1,0 +1,196 @@
+openapi: 3.0.0
+info:
+  title: Coffee API
+  description: This is a internal API for Coffee
+  version: 1.0.0
+#--------------------------------------------------
+servers:
+  - url: "http://{environment}/v1/coffee"
+    variables:
+      environment:
+        default: localhost
+        enum:
+          - producao.com # Production server
+          - teste.com # Stage server
+          - localhost # Development environment
+#--------------------------------------------------
+tags:
+  - name: Coffee
+    description: Everything Coffee
+#--------------------------------------------------
+paths:
+  /status:
+    get:
+      summary: Search All Transaction
+      tags:
+        - Coffee
+      responses:
+        200:
+          $ref: "#/components/responses/Status"
+        422:
+          $ref: "#/components/responses/UnprocessableEntity"
+        503:
+          $ref: "#/components/responses/InternalServerError"
+  #--------------------------------------------------
+  /espresso:
+    post:
+      summary: Make Espresso
+      tags:
+        - Coffee
+      responses:
+        201:
+          $ref: "#/components/responses/Espresso"
+        422:
+          $ref: "#/components/responses/UnprocessableEntity"
+        503:
+          $ref: "#/components/responses/InternalServerError"
+  #--------------------------------------------------
+  /double-espresso:
+    post:
+      summary: Make Double Espresso
+      tags:
+        - Coffee
+      responses:
+        201:
+          $ref: "#/components/responses/DoubleEspresso"
+        422:
+          $ref: "#/components/responses/UnprocessableEntity"
+        503:
+          $ref: "#/components/responses/InternalServerError"
+  #--------------------------------------------------
+
+components:
+  #--------------------------------------------------
+
+  #--------------------------------------------------
+  responses:
+    #--------------------------------------------------
+    Status:
+      description: Your machine Status
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Status"
+    #--------------------------------------------------
+    Espresso:
+      description: One Coffee
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Espresso"
+    #--------------------------------------------------
+    DoubleEspresso:
+      description: One coffee
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/DoubleEspresso"
+    #--------------------------------------------------
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/NotFound"
+    #--------------------------------------------------
+    AccessDenied:
+      description: AccessDenied
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AccessDenied"
+    #--------------------------------------------------
+    UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UnprocessableEntity"
+    #--------------------------------------------------
+    InternalServerError:
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/InternalServerError"
+  #--------------------------------------------------
+
+  schemas:
+    #--------------------------------------------------
+    NotFound:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Infelizmente não foi possível encontrar este registro.
+            status:
+              type: string
+              example: 404
+            errors:
+              type: object
+    #--------------------------------------------------
+    UnprocessableEntity:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Não foi possível processar as instruções presentes.
+            status:
+              type: string
+              example: 422
+    #--------------------------------------------------
+    AccessDenied:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Infelizmente você não possui permissão para executar esta ação!
+            status:
+              type: string
+              example: 403
+    #--------------------------------------------------
+    InternalServerError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Erro inesperado do servidor, consulte o log para mais informações.
+            status:
+              type: string
+              example: 500
+    #--------------------------------------------------
+    Espresso:
+      type: object
+      properties:
+        data:
+          type: object
+          example:
+            {"Number_of_litres_of_coffee made": 0.05}
+    #--------------------------------------------------
+    DoubleEspresso:
+      type: object
+      properties:
+        data:
+          type: object
+          example:
+            {"Number_of_litres_of_coffee_made": 0.10}
+    #--------------------------------------------------
+    GetAllTransaction:
+      type: object
+      properties:
+        data:
+          type: object
+          example: {"Need more water and have more 3 espressos"}
+    #--------------------------------------------------''

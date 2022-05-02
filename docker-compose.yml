@@ -1,0 +1,58 @@
+version: "3.5"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: test_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: default
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    networks:
+      - net
+
+  backend:
+    environment:
+      - APP_NAME=test
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=2DIxWY5R7ghnx9FTQpvGpk8ICHxz6ORk
+      - APP_URL=http://localhost
+      - APP_TIMEZONE=UTC
+      - CACHE_DRIVER=file
+      - QUEUE_CONNECTION=sync
+      - JWT_SECRET=sG1fCsD7dO5WFUISkZHQhRKihJ9xgoS59BJNsRs4wkqTR6WmrZ2bQRJsgocHEYsK
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=test
+      - DB_USERNAME=default
+      - DB_PASSWORD=secret
+      - WAIT_HOSTS=db:3306
+      - WAIT_HOSTS_TIMEOUT=100
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    container_name: test_backend
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    depends_on:
+      - db
+    volumes:
+      - type: bind # bind type overrides files on image
+        source: ${PWD}/
+        target: /var/www/html
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+    networks:
+      - net
+
+#Docker Networks
+networks:
+  net:
+    driver: bridge

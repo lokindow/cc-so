@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'invalid_attribute'                     => 'O campo :attribute é inválido.',
+    'validation_error'                      => 'Infelizmente houve um erro ao validar suas informações.',
+    'service_unavailable'                   => 'Nossos serviços não estão disponíveis no momento, tente mais tarde por favor!',
+    'not_found'                             => 'Infelizmente não foi possível encontrar este registro.',
+    'bad_request'                           => 'Infelizmente sua requisição está mal formatada, corrija e tente novamente.',
+    'bonus_conflict'                        => 'O valor do bônus deste parceiro foi alterado durante sua solicitação.<br>Por favor, verifique o valor novamente.',
+    'limit_exceeded'                        => 'Infelizmente você excedeu o limite de consultas.',
+    'withdraw_limit_exceeded'               => 'Infelizmente você excedeu o limite de saques.',
+    'generic_error'                         => 'Ops, ocorreu um erro inesperado, tente mais tarde por favor!',
+    'unauthorized'                          => 'Infelizmente você não tem autorização para acessar este recurso',
+    'access_denied'                         => 'Infelizmente você não possui permissão para executar esta ação!',
+    'double_spending'                       => 'Infelizmente você não possui saldo suficiente para este saque.',
+    'gopoints_double_spending'              => 'Infelizmente você não possui saldo suficiente para finalizar esta compra.',
+    'cancel_solicitation_denied'            => 'Infelizmente esta solicitação não pode mais ser cancelada!',
+    'pending_solicitation'                  => 'Parece que você já possui uma solicitação em andamento, entre em contato com o nosso atendimento para mais informações.',
+    'paypal_unique_transaction'             => 'Parece que você já possui um saque em andamento, por favor, entre em contato com o nosso atendimento para mais informações.',
+    'duplicated'                            => 'Parece que já existe um registro igual ao inserido, por favor, entre em contato com o nosso atendimento para mais informações.',
+    'gopoints_duplicated'                   => 'Parece que você já possui uma transação finalizada, por favor, verifique seus pedidos ou sua carteira.',
+    'token_not_provided'                    => 'Infelizmente você não possui credenciais válidas para acesso!',
+    'token_expired'                         => 'Infelizmente sua sessão não está ativa, entre com email e senha e volte :)',
+    'token_decode_error'                    => 'Ocorreu um erro ao validar os dados da sua sessão',
+    'partner_not_found'                     => 'Infelizmente não encontramos os dados deste parceiro',
+    'gateway_timeout'                       => 'Não foi possivel completar sua requisição devido a demora na resposta de nossos serviços, tente mais tarde por favor!',
+    'domain_max_length'                     => 'Domínio do tipo :domain_extension não pode exceder :max caracteres',
+    'partner_transactions_not_found'        => 'Ocorreu um erro, verifique os parâmetros enviados.',
+    'bonus_limit_exceeded'                  => 'Infelizmente você excedeu o limite de bônus para esta carteira',
+    'shopping_crawler_batch_not_found'      => 'Não foi encontrado um lote para continuar a verificação com o crawler',
+    'shopping_crawler_products_not_found'   => 'Não foram encontrados produtos a serem testados para o lote atual'
+];
