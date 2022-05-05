@@ -106,10 +106,10 @@ class Coffee
         $arrResult = [];
 
         if ($this->beans < self::CONTAINER_BEANS) {
-            $arrResult = ["beans"];
+            $arrResult[] = "beans";
         }
         if ($this->water < self::CONTAINER_WATER) {
-            $arrResult = ["water"];
+            $arrResult[] = "water";
         }
 
         return $arrResult;
